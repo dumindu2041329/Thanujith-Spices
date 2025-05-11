@@ -17,14 +17,19 @@ document.addEventListener('DOMContentLoaded', () => {
   // Load cart
   loadCart();
   
-  // Check if cart is empty
+  // Check if cart is empty - immediately redirect to index if no items
   if (cart.length === 0) {
-    showEmptyCheckout();
-  } else {
-    // Render checkout
-    renderCheckoutItems();
-    calculateTotals();
+    // Show a brief notification
+    showNotification('කරට්ටුව හිස්! මුල් පිටුවට යොමු කරමින්...');
+    
+    // Redirect to index page
+    window.location.href = 'index.html';
+    return; // Stop further execution
   }
+  
+  // If we have items, render checkout
+  renderCheckoutItems();
+  calculateTotals();
   
   // Setup event listeners
   setupCheckoutEventListeners();
@@ -43,7 +48,7 @@ function setupCheckoutEventListeners() {
   }
 }
 
-// Show empty checkout state
+// Show empty checkout state - only used if there's a need to show empty state without redirecting
 function showEmptyCheckout() {
   if (checkoutEmpty && checkoutContent) {
     checkoutEmpty.classList.remove('hidden');

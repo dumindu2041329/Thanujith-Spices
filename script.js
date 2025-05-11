@@ -100,6 +100,11 @@ function setupEventListeners() {
       closeCart();
     }
   });
+  
+  // Add initial cart item event listeners if cart has items
+  if (cartItems && cart.length > 0) {
+    addCartItemEventListeners();
+  }
 }
 
 // Toggle mobile menu
@@ -218,7 +223,7 @@ function renderCartItems() {
     total += itemTotal;
     
     cartHTML += `
-      <div class="cart-item">
+      <div class="cart-item" data-id="${item.id}">
         <div class="cart-item-image">
           <img src="${item.image}" alt="${item.name}">
         </div>
@@ -226,14 +231,14 @@ function renderCartItems() {
           <h4>${item.name}</h4>
           <p class="cart-item-price">රු. ${item.price}</p>
           <div class="cart-item-quantity">
-            <button class="quantity-btn minus" onclick="updateCartItemQuantity(${item.id}, ${item.quantity - 1})">-</button>
+            <button class="quantity-btn minus" data-id="${item.id}" data-quantity="${item.quantity - 1}">-</button>
             <span>${item.quantity}</span>
-            <button class="quantity-btn plus" onclick="updateCartItemQuantity(${item.id}, ${item.quantity + 1})">+</button>
+            <button class="quantity-btn plus" data-id="${item.id}" data-quantity="${item.quantity + 1}">+</button>
           </div>
         </div>
         <div class="cart-item-total">
           <p>රු. ${itemTotal}</p>
-          <button class="remove-item-btn" onclick="removeFromCart(${item.id})">
+          <button class="remove-item-btn" data-id="${item.id}">
             <i class="fas fa-trash-alt"></i>
           </button>
         </div>
@@ -245,6 +250,9 @@ function renderCartItems() {
   if (cartTotalPrice) {
     cartTotalPrice.textContent = `රු. ${total}`;
   }
+  
+  // Add event listeners for cart item buttons using event delegation
+  addCartItemEventListeners();
 }
 
 // Show notification
@@ -431,6 +439,40 @@ function updateThemeIcon(isDarkTheme) {
     } else {
       button.innerHTML = '<i class="fas fa-moon"></i>';
       button.setAttribute('title', 'Switch to Dark Mode');
+    }
+  });
+}
+
+// Handle cart item button clicks using event delegation
+function addCartItemEventListeners() {
+  if (!cartItems) return;
+  
+  // Use event delegation for cart item buttons
+  cartItems.addEventListener('click', function(e) {
+    // Stop event from propagating to window
+    e.stopPropagation();
+    
+    // Handle quantity decrease button
+    if (e.target.classList.contains('minus') || e.target.closest('.minus')) {
+      const button = e.target.classList.contains('minus') ? e.target : e.target.closest('.minus');
+      const productId = parseInt(button.dataset.id);
+      const newQuantity = parseInt(button.dataset.quantity);
+      updateCartItemQuantity(productId, newQuantity);
+    }
+    
+    // Handle quantity increase button
+    if (e.target.classList.contains('plus') || e.target.closest('.plus')) {
+      const button = e.target.classList.contains('plus') ? e.target : e.target.closest('.plus');
+      const productId = parseInt(button.dataset.id);
+      const newQuantity = parseInt(button.dataset.quantity);
+      updateCartItemQuantity(productId, newQuantity);
+    }
+    
+    // Handle remove item button
+    if (e.target.classList.contains('remove-item-btn') || e.target.closest('.remove-item-btn')) {
+      const button = e.target.classList.contains('remove-item-btn') ? e.target : e.target.closest('.remove-item-btn');
+      const productId = parseInt(button.dataset.id);
+      removeFromCart(productId);
     }
   });
 }
