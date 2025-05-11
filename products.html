@@ -68,6 +68,27 @@
 
   <section class="products-section">
     <div class="container">
+      <div class="filters-section">
+        <div class="filter-group">
+          <label for="category-filter">වර්ගය තෝරන්න:</label>
+          <select id="category-filter">
+            <option value="all">සියලු වර්ග</option>
+            <!-- Categories will be added dynamically -->
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>මිල පරාසය:</label>
+          <div class="price-filter">
+            <div class="price-inputs">
+              <input type="number" id="min-price" placeholder="අවම" min="0">
+              <span>-</span>
+              <input type="number" id="max-price" placeholder="උපරිම" min="0">
+            </div>
+            <button id="price-filter-btn" class="filter-btn">පෙරන්න</button>
+          </div>
+        </div>
+      </div>
+      
       <div class="products-grid" id="all-products">
         <!-- Products will be loaded here from JavaScript -->
       </div>

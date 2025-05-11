@@ -53,10 +53,11 @@ function setupEventListeners() {
     mobileMenuButton.addEventListener('click', toggleMobileMenu);
   }
   
-  // Cart button
-  if (cartButton) {
-    cartButton.addEventListener('click', toggleCart);
-  }
+  // Cart button - make it work on all pages
+  const allCartButtons = document.querySelectorAll('.cart-button-container button');
+  allCartButtons.forEach(button => {
+    button.addEventListener('click', toggleCart);
+  });
   
   // Close cart button
   if (closeCartButton) {
@@ -113,7 +114,12 @@ function toggleMobileMenu() {
 }
 
 // Toggle cart overlay
-function toggleCart() {
+function toggleCart(event) {
+  // Prevent propagation to stop click events from bubbling
+  if (event) {
+    event.stopPropagation();
+  }
+  
   renderCartItems();
   cartOverlay.classList.toggle('hidden');
   document.body.classList.toggle('no-scroll');
@@ -449,28 +455,20 @@ function addCartItemEventListeners() {
   
   // Use event delegation for cart item buttons
   cartItems.addEventListener('click', function(e) {
-    // Stop event from propagating to window
+    // Stop propagation to prevent closing the cart when clicking buttons
     e.stopPropagation();
     
-    // Handle quantity decrease button
-    if (e.target.classList.contains('minus') || e.target.closest('.minus')) {
-      const button = e.target.classList.contains('minus') ? e.target : e.target.closest('.minus');
+    // Quantity buttons
+    if (e.target.classList.contains('quantity-btn') || e.target.parentElement.classList.contains('quantity-btn')) {
+      const button = e.target.classList.contains('quantity-btn') ? e.target : e.target.parentElement;
       const productId = parseInt(button.dataset.id);
       const newQuantity = parseInt(button.dataset.quantity);
       updateCartItemQuantity(productId, newQuantity);
     }
     
-    // Handle quantity increase button
-    if (e.target.classList.contains('plus') || e.target.closest('.plus')) {
-      const button = e.target.classList.contains('plus') ? e.target : e.target.closest('.plus');
-      const productId = parseInt(button.dataset.id);
-      const newQuantity = parseInt(button.dataset.quantity);
-      updateCartItemQuantity(productId, newQuantity);
-    }
-    
-    // Handle remove item button
-    if (e.target.classList.contains('remove-item-btn') || e.target.closest('.remove-item-btn')) {
-      const button = e.target.classList.contains('remove-item-btn') ? e.target : e.target.closest('.remove-item-btn');
+    // Remove button
+    if (e.target.classList.contains('remove-item-btn') || e.target.parentElement.classList.contains('remove-item-btn')) {
+      const button = e.target.classList.contains('remove-item-btn') ? e.target : e.target.parentElement;
       const productId = parseInt(button.dataset.id);
       removeFromCart(productId);
     }

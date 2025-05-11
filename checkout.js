@@ -22,9 +22,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Show a brief notification
     showNotification('කරට්ටුව හිස්! මුල් පිටුවට යොමු කරමින්...');
     
-    // Redirect to index page
-    window.location.href = 'index.html';
-    return; // Stop further execution
+    // Navigate to home page without reloading
+    setTimeout(() => {
+      window.location.href = 'index.html';
+    }, 1500);
+    return;
   }
   
   // If we have items, render checkout

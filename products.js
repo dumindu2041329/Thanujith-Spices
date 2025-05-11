@@ -4,73 +4,81 @@ const products = [
     id: 1,
     name: "කුරුඳු",
     price: 250,
-    image: "images/herbal.jpg",
+    image: "https://images.unsplash.com/photo-1635355972494-3ab306a38206?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
     description: "අලුත්ම ඉහල ගුණාත්මක කුරුඳු, අත්තිකාරම් වැඩ සදහා සුදුසුයි.",
     isNew: true,
     rating: 4.5,
-    featured: true
+    featured: true,
+    category: "කුළුබඩු" // spices
   },
   {
     id: 2,
     name: "ගම්මිරිස්",
     price: 300,
-    image: "images/pepper.jpg",
+    image: "https://images.unsplash.com/photo-1599683305031-f59845a474a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
     description: "සාම්ප්‍රදායික ක්‍රමයට වගා කරන ලද ගම්මිරිස්, කල් තබා ගැනීමට සුදුසුයි.",
     rating: 5,
-    featured: true
+    featured: true,
+    category: "කුළුබඩු" // spices
   },
   {
     id: 3,
     name: "කරාබුනැටි",
     price: 200,
-    image: "images/cloves.jpg",
+    image: "https://images.unsplash.com/photo-1629034441270-b3f895c3c13a?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
     description: "තේරූ ගති ඇති කරාබුනැටි, යහපත් සුවඳ හා රස ගුණයෙන් යුතුයි.",
     isDiscount: true,
     rating: 4,
-    featured: true
+    featured: true,
+    category: "කුළුබඩු" // spices
   },
   {
     id: 4,
     name: "කහ",
     price: 180,
-    image: "images/Turmeric.jpg",
+    image: "https://images.unsplash.com/photo-1615485500796-371ee0890bd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
     description: "නිරෝගීමත් දිවියකට අවශ්‍ය ඉහල ගුණාත්මක කහ කුඩු.",
     rating: 3.5,
-    featured: true
+    featured: true,
+    category: "කුඩු" // powders
   },
   {
     id: 5,
     name: "සාදික්කා",
     price: 350,
-    image: "images/nutmeg.jpg",
+    image: "https://images.unsplash.com/photo-1633164227993-c41a2351b6ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
     description: "ඉහල ගුණාත්මක සාදික්කා, සෞඛ්‍ය සම්පන්න ආහාර රසට.",
-    rating: 4.5
+    rating: 4.5,
+    category: "කුළුබඩු" // spices
   },
   {
     id: 6,
     name: "බුලත්",
     price: 150,
-    image: "images/Betel nut.jpg",
+    image: "https://images.unsplash.com/photo-1592129899081-76b170e3a2bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
     description: "සාම්ප්‍රදායික අවශ්‍යතා සඳහා සුදුසු ගුණාත්මක බුලත්.",
-    rating: 4
+    rating: 4,
+    category: "පැළ" // plants
   },
   {
     id: 7,
     name: "එනසාල්",
     price: 280,
-    image: "images/cardamom.jpg",
+    image: "https://images.unsplash.com/photo-1642892248349-3bd8832fa6bb?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
     description: "පිරිසිදු එනසාල්, ඕනෑම ආහාරයකට සුදුසුයි.",
     isNew: true,
-    rating: 4
+    rating: 4,
+    category: "කුළුබඩු" // spices
   },
   {
     id: 8,
     name: "දුරු",
     price: 220,
-    image: "images/cumin.jpg",
+    image: "https://images.unsplash.com/photo-1603503369706-36a8e1df0d4f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
     description: "උසස් ගුණාත්මක දුරු, ආහාර සඳහා හොඳම තේරීම.",
     isDiscount: true,
-    rating: 3.5
+    rating: 3.5,
+    category: "කුළුබඩු" // spices
   }
 ];
 
@@ -87,6 +95,65 @@ function getAllProducts() {
 // Get product by id
 function getProductById(id) {
   return products.find(product => product.id === parseInt(id));
+}
+
+// Get all categories
+function getAllCategories() {
+  const categories = [...new Set(products.map(product => product.category).filter(Boolean))];
+  return categories;
+}
+
+// Filter products by category
+function filterProductsByCategory(category) {
+  if (!category || category === 'all') {
+    return products;
+  }
+  return products.filter(product => product.category === category);
+}
+
+// Filter products by price range
+function filterProductsByPrice(minPrice, maxPrice) {
+  return products.filter(product => {
+    if (minPrice && maxPrice) {
+      return product.price >= minPrice && product.price <= maxPrice;
+    } else if (minPrice) {
+      return product.price >= minPrice;
+    } else if (maxPrice) {
+      return product.price <= maxPrice;
+    }
+    return true;
+  });
+}
+
+// Apply multiple filters
+function applyFilters(filters) {
+  let filteredProducts = products;
+  
+  // Apply category filter
+  if (filters.category && filters.category !== 'all') {
+    filteredProducts = filteredProducts.filter(product => product.category === filters.category);
+  }
+  
+  // Apply price range filter
+  if (filters.minPrice || filters.maxPrice) {
+    filteredProducts = filteredProducts.filter(product => {
+      const price = product.price;
+      const minPrice = filters.minPrice || 0;
+      const maxPrice = filters.maxPrice || Infinity;
+      return price >= minPrice && price <= maxPrice;
+    });
+  }
+  
+  // Apply search term filter
+  if (filters.searchTerm) {
+    const searchTerm = filters.searchTerm.toLowerCase();
+    filteredProducts = filteredProducts.filter(product => 
+      product.name.toLowerCase().includes(searchTerm) || 
+      product.description.toLowerCase().includes(searchTerm)
+    );
+  }
+  
+  return filteredProducts;
 }
 
 // Generate star rating HTML
@@ -156,43 +223,122 @@ function renderFeaturedProducts() {
 }
 
 // Render all products
-function renderAllProducts() {
+function renderAllProducts(filters = {}) {
   const allProductsContainer = document.getElementById('all-products');
+  const noProductsFound = document.getElementById('no-products-found');
   if (!allProductsContainer) return;
   
-  const allProducts = getAllProducts();
+  // Apply filters or get all products
+  const filteredProducts = Object.keys(filters).length > 0 
+    ? applyFilters(filters) 
+    : getAllProducts();
+    
   let productsHTML = '';
   
-  allProducts.forEach(product => {
+  // Check if we have products after filtering
+  if (filteredProducts.length === 0) {
+    if (noProductsFound) {
+      noProductsFound.classList.remove('hidden');
+    }
+    allProductsContainer.innerHTML = '';
+    return;
+  }
+  
+  // Hide the "no products found" message if we have products
+  if (noProductsFound) {
+    noProductsFound.classList.add('hidden');
+  }
+  
+  filteredProducts.forEach(product => {
     productsHTML += generateProductCard(product);
   });
   
   allProductsContainer.innerHTML = productsHTML;
 }
 
-// Filter products
+// Filter products by search term
 function filterProducts(searchTerm) {
-  const allProductsContainer = document.getElementById('all-products');
-  if (!allProductsContainer) return;
+  // Create filter object with search term
+  const filters = {
+    searchTerm: searchTerm
+  };
   
-  const noProductsFoundMessage = document.getElementById('no-products-found');
+  // Get current category and price range if available
+  const categoryFilter = document.getElementById('category-filter');
+  const minPriceInput = document.getElementById('min-price');
+  const maxPriceInput = document.getElementById('max-price');
   
-  const filteredProducts = getAllProducts().filter(product => 
-    product.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
-    product.description.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  if (categoryFilter && categoryFilter.value !== 'all') {
+    filters.category = categoryFilter.value;
+  }
   
-  if (filteredProducts.length === 0) {
-    allProductsContainer.innerHTML = '';
-    noProductsFoundMessage.classList.remove('hidden');
-  } else {
-    let productsHTML = '';
+  if (minPriceInput && minPriceInput.value) {
+    filters.minPrice = parseInt(minPriceInput.value);
+  }
+  
+  if (maxPriceInput && maxPriceInput.value) {
+    filters.maxPrice = parseInt(maxPriceInput.value);
+  }
+  
+  // Apply all filters
+  renderAllProducts(filters);
+}
+
+// Initialize and setup filters
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize category filter with options
+  const categoryFilter = document.getElementById('category-filter');
+  if (categoryFilter) {
+    const categories = getAllCategories();
+    let categoryOptions = '<option value="all">සියලු වර්ග</option>';
     
-    filteredProducts.forEach(product => {
-      productsHTML += generateProductCard(product);
+    categories.forEach(category => {
+      categoryOptions += `<option value="${category}">${category}</option>`;
     });
     
-    allProductsContainer.innerHTML = productsHTML;
-    noProductsFoundMessage.classList.add('hidden');
+    categoryFilter.innerHTML = categoryOptions;
+    
+    // Add event listener for category filter
+    categoryFilter.addEventListener('change', function() {
+      applyAllFilters();
+    });
   }
-}
+  
+  // Set up price filter button
+  const priceFilterBtn = document.getElementById('price-filter-btn');
+  if (priceFilterBtn) {
+    priceFilterBtn.addEventListener('click', function() {
+      applyAllFilters();
+    });
+  }
+  
+  // Set up search functionality
+  const searchInput = document.getElementById('product-search');
+  if (searchInput) {
+    searchInput.addEventListener('input', function(e) {
+      applyAllFilters();
+    });
+  }
+  
+  // Function to collect all current filter values and apply them
+  function applyAllFilters() {
+    const searchInput = document.getElementById('product-search');
+    const categoryFilter = document.getElementById('category-filter');
+    const minPriceInput = document.getElementById('min-price');
+    const maxPriceInput = document.getElementById('max-price');
+  
+    const searchTerm = searchInput ? searchInput.value.trim() : '';
+    const category = categoryFilter ? categoryFilter.value : 'all';
+    const minPrice = minPriceInput ? parseInt(minPriceInput.value) || 0 : 0;
+    const maxPrice = maxPriceInput ? parseInt(maxPriceInput.value) || 0 : 0;
+      
+    const filters = {};
+    
+    if (searchTerm) filters.searchTerm = searchTerm;
+    if (category !== 'all') filters.category = category;
+    if (minPrice > 0) filters.minPrice = minPrice;
+    if (maxPrice > 0) filters.maxPrice = maxPrice;
+    
+    renderAllProducts(filters);
+  }
+});

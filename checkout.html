@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ගෙවීම් තොරතුරු - Thanujith Spices</title>
-  <meta name="description" content="Thanujith Spices හි ඔබේ ඇණවුම සම්පූර්ණ කරන්න. ආරක්ෂිත ගෙවීම් ක්‍රම සහ ඉක්මන් බෙදා හැරීම.">
+  <title>ගෙවීම් - Thanujith Spices</title>
+  <meta name="description" content="ඔබගේ Thanujith Spices ඇණවුම සම්පූර්ණ කරන්න. ඔබට අවශ්‍ය සියලුම කුළුබඩු මිලදී ගන්න.">
   <!-- Open Graph tags -->
-  <meta property="og:title" content="ගෙවීම් තොරතුරු - Thanujith Spices">
-  <meta property="og:description" content="Thanujith Spices හි ඔබේ ඇණවුම සම්පූර්ණ කරන්න. ආරක්ෂිත ගෙවීම් ක්‍රම සහ ඉක්මන් බෙදා හැරීම.">
+  <meta property="og:title" content="ගෙවීම් - Thanujith Spices">
+  <meta property="og:description" content="ඔබගේ Thanujith Spices ඇණවුම සම්පූර්ණ කරන්න. ඔබට අවශ්‍ය සියලුම කුළුබඩු මිලදී ගන්න.">
   <meta property="og:type" content="website">
   
   <!-- Fonts -->
@@ -56,140 +56,154 @@
 
   <section class="page-banner">
     <div class="container">
-      <h1>ගෙවීම් තොරතුරු</h1>
-      <p>ඔබගේ ඇණවුම සම්පූර්ණ කිරීමට පහත තොරතුරු සම්පූර්ණ කරන්න.</p>
+      <h1>ගෙවීම්</h1>
+      <p>ඔබගේ ඇණවුම සම්පූර්ණ කරන්න</p>
     </div>
   </section>
 
   <section class="checkout-section">
     <div class="container">
+      <!-- Empty checkout notification -->
       <div id="checkout-empty" class="hidden">
-        <div class="empty-checkout">
+        <div class="empty-checkout-message">
           <i class="fas fa-shopping-cart"></i>
           <h2>ඔබගේ කරට්ටුව හිස්ය</h2>
-          <p>ගෙවීම් සිදු කිරීමට පෙර නිෂ්පාදන තෝරන්න.</p>
-          <a href="products.html" class="btn btn-primary">නිෂ්පාදන බලන්න</a>
+          <p>කරට්ටුවට භාණ්ඩ එකතු කිරීමට නිෂ්පාදන පිටුවට යන්න.</p>
+          <a href="products.html" class="btn btn-primary">නිෂ්පාදන වෙත යන්න</a>
         </div>
       </div>
-      
-      <div id="checkout-content">
-        <div class="checkout-grid">
-          <div class="checkout-details">
-            <h2>ඇණවුම් විස්තර</h2>
-            <div class="order-summary">
-              <h3>ඇණවුම් සාරාංශය</h3>
-              <div id="checkout-items">
-                <!-- Checkout items will be loaded here -->
-              </div>
-              <div class="order-totals">
-                <div class="subtotal">
-                  <p>අයිතම මුළු එකතුව:</p>
-                  <p id="subtotal-amount">රු. 0</p>
-                </div>
-                <div class="shipping">
-                  <p>බෙදා හැරීමේ ගාස්තු:</p>
-                  <p id="shipping-amount">රු. 350</p>
-                </div>
-                <div class="total">
-                  <p>මුළු එකතුව:</p>
-                  <p id="total-amount">රු. 0</p>
-                </div>
-              </div>
-            </div>
-            
-            <div class="payment-methods">
-              <h3>ගෙවීම් ක්‍රමය</h3>
-              <div class="payment-options">
-                <div class="payment-option">
-                  <input type="radio" id="cod" name="payment" value="cod" checked>
-                  <label for="cod">ලබා දීමේදී මුදල් ගෙවීම</label>
-                </div>
-                <div class="payment-option">
-                  <input type="radio" id="bank" name="payment" value="bank">
-                  <label for="bank">බැංකු මාරු කිරීම්</label>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="shipping-details">
-            <h2>ප්‍රවාහන තොරතුරු</h2>
-            <form id="checkout-form">
+
+      <!-- Checkout content -->
+      <div id="checkout-content" class="checkout-content">
+        <div class="checkout-form-container">
+          <h2>ගෙවීම් තොරතුරු</h2>
+          <form id="checkout-form">
+            <div class="checkout-form-section">
+              <h3>පුද්ගලික තොරතුරු</h3>
               <div class="form-group">
                 <label for="full-name">සම්පූර්ණ නම *</label>
                 <input type="text" id="full-name" name="full-name" required>
               </div>
-              <div class="form-group">
-                <label for="checkout-email">විද්‍යුත් තැපෑල *</label>
-                <input type="email" id="checkout-email" name="checkout-email" required>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="checkout-email">විද්‍යුත් තැපෑල *</label>
+                  <input type="email" id="checkout-email" name="checkout-email" required>
+                </div>
+                <div class="form-group">
+                  <label for="checkout-phone">දුරකථන අංකය *</label>
+                  <input type="tel" id="checkout-phone" name="checkout-phone" required>
+                </div>
               </div>
-              <div class="form-group">
-                <label for="checkout-phone">දුරකථන අංකය *</label>
-                <input type="tel" id="checkout-phone" name="checkout-phone" required>
-              </div>
+            </div>
+
+            <div class="checkout-form-section">
+              <h3>ගෙවීම් ලිපිනය</h3>
               <div class="form-group">
                 <label for="address">ලිපිනය *</label>
-                <textarea id="address" name="address" rows="3" required></textarea>
-              </div>
-              <div class="form-group">
-                <label for="city">නගරය *</label>
-                <input type="text" id="city" name="city" required>
+                <input type="text" id="address" name="address" required>
               </div>
               <div class="form-row">
-                <div class="form-group half">
+                <div class="form-group">
+                  <label for="city">නගරය *</label>
+                  <input type="text" id="city" name="city" required>
+                </div>
+                <div class="form-group">
                   <label for="district">දිස්ත්‍රික්කය *</label>
                   <select id="district" name="district" required>
                     <option value="">දිස්ත්‍රික්කය තෝරන්න</option>
+                    <option value="Ampara">අම්පාර</option>
+                    <option value="Anuradhapura">අනුරාධපුර</option>
+                    <option value="Badulla">බදුල්ල</option>
+                    <option value="Batticaloa">මඩකලපුව</option>
                     <option value="Colombo">කොළඹ</option>
-                    <option value="Gampaha">ගම්පහ</option>
-                    <option value="Kalutara">කළුතර</option>
-                    <option value="Kandy">මහනුවර</option>
-                    <option value="Matale">මාතලේ</option>
-                    <option value="Nuwara Eliya">නුවරඑළිය</option>
                     <option value="Galle">ගාල්ල</option>
-                    <option value="Matara">මාතර</option>
+                    <option value="Gampaha">ගම්පහ</option>
                     <option value="Hambantota">හම්බන්තොට</option>
                     <option value="Jaffna">යාපනය</option>
-                    <option value="Kilinochchi">කිලිනොච්චි</option>
-                    <option value="Mannar">මන්නාරම</option>
-                    <option value="Vavuniya">වවුනියාව</option>
-                    <option value="Mullaitivu">මුලතිව්</option>
-                    <option value="Batticaloa">මඩකලපුව</option>
-                    <option value="Ampara">අම්පාර</option>
-                    <option value="Trincomalee">ත්‍රිකුණාමලය</option>
-                    <option value="Kurunegala">කුරුණෑගල</option>
-                    <option value="Puttalam">පුත්තලම</option>
-                    <option value="Anuradhapura">අනුරාධපුරය</option>
-                    <option value="Polonnaruwa">පොලොන්නරුව</option>
-                    <option value="Badulla">බදුල්ල</option>
-                    <option value="Monaragala">මොණරාගල</option>
-                    <option value="Ratnapura">රත්නපුර</option>
+                    <option value="Kalutara">කළුතර</option>
+                    <option value="Kandy">මහනුවර</option>
                     <option value="Kegalle">කෑගල්ල</option>
+                    <option value="Kilinochchi">කිලිනොච්චි</option>
+                    <option value="Kurunegala">කුරුණෑගල</option>
+                    <option value="Mannar">මන්නාරම</option>
+                    <option value="Matale">මාතලේ</option>
+                    <option value="Matara">මාතර</option>
+                    <option value="Monaragala">මොණරාගල</option>
+                    <option value="Mullaitivu">මුලතිව්</option>
+                    <option value="Nuwara Eliya">නුවරඑළිය</option>
+                    <option value="Polonnaruwa">පොළොන්නරුව</option>
+                    <option value="Puttalam">පුත්තලම</option>
+                    <option value="Ratnapura">රත්නපුර</option>
+                    <option value="Trincomalee">ත්‍රිකුණාමලය</option>
+                    <option value="Vavuniya">වවුනියාව</option>
                   </select>
-                </div>
-                <div class="form-group half">
-                  <label for="postal-code">තැපැල් කේතය</label>
-                  <input type="text" id="postal-code" name="postal-code">
                 </div>
               </div>
               <div class="form-group">
-                <label for="notes">අමතර සටහන්</label>
-                <textarea id="notes" name="notes" rows="3"></textarea>
+                <label for="postal-code">තැපැල් කේතය</label>
+                <input type="text" id="postal-code" name="postal-code">
               </div>
-              <button type="submit" class="btn btn-primary btn-full">ඇණවුම ස්ථිර කරන්න</button>
-            </form>
+            </div>
+
+            <div class="checkout-form-section">
+              <h3>ගෙවීම් ක්‍රමය</h3>
+              <div class="payment-methods">
+                <div class="payment-method">
+                  <input type="radio" id="cash-on-delivery" name="payment" value="cash-on-delivery" checked>
+                  <label for="cash-on-delivery">භාරදීමේදී ගෙවීම (COD)</label>
+                </div>
+                <div class="payment-method">
+                  <input type="radio" id="bank-transfer" name="payment" value="bank-transfer">
+                  <label for="bank-transfer">බැංකු මාරු කිරීම</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="checkout-form-section">
+              <h3>අතිරේක තොරතුරු</h3>
+              <div class="form-group">
+                <label for="notes">සටහන් (අමතර)</label>
+                <textarea id="notes" name="notes" rows="4"></textarea>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-full">ඇණවුම් කරන්න</button>
+          </form>
+        </div>
+
+        <div class="checkout-summary">
+          <h2>ඔබගේ ඇණවුම</h2>
+          <div class="checkout-items" id="checkout-items">
+            <!-- Checkout items will be loaded here -->
+          </div>
+          <div class="checkout-totals">
+            <div class="checkout-total-row">
+              <span>උප එකතුව:</span>
+              <span id="subtotal-amount">රු. 0</span>
+            </div>
+            <div class="checkout-total-row">
+              <span>ප්‍රවාහන ගාස්තු:</span>
+              <span id="shipping-amount">රු. 350</span>
+            </div>
+            <div class="checkout-total-row total">
+              <span>එකතුව:</span>
+              <span id="total-amount">රු. 350</span>
+            </div>
           </div>
         </div>
       </div>
-      
+
+      <!-- Order success message -->
       <div id="order-success" class="hidden">
-        <div class="success-message order-success-message">
+        <div class="order-success-message">
           <i class="fas fa-check-circle"></i>
           <h2>ඔබගේ ඇණවුම සාර්ථකයි!</h2>
-          <p>ඔබගේ ඇණවුම් අංකය: <span id="order-number"></span></p>
-          <p>අපි ඔබේ ඇණවුම තහවුරු කරන විද්‍යුත් තැපෑලක් යවා ඇත.</p>
-          <p>ඔබගේ භාණ්ඩ දින 3-5 ක් තුළ ලැබෙනු ඇත.</p>
-          <a href="index.html" class="btn btn-primary">මුල් පිටුවට ආපසු යන්න</a>
+          <p>ඔබගේ ඇණවුම් අංකය: <strong id="order-number"></strong></p>
+          <p>ඔබගේ ඇණවුම සාර්ථකව ලැබුණි. අපි ඉක්මනින් එය ප්‍රවාහනය කරන්නෙමු. ඔබට ඔබගේ ඇණවුම් තත්ත්වය පිළිබඳ විස්තර සහිත තහවුරු කිරීමේ ඊමේල් පණිවිඩයක් ලැබෙනු ඇත.</p>
+          <div class="order-success-buttons">
+            <a href="index.html" class="btn btn-primary">මුල් පිටුවට යන්න</a>
+            <a href="products.html" class="btn btn-secondary">තවත් සොයන්න</a>
+          </div>
         </div>
       </div>
     </div>
@@ -244,27 +258,32 @@
     </div>
   </footer>
 
-  <div id="cart-notification" class="hidden">
-    <p><i class="fas fa-check-circle"></i> <span id="notification-text"></span></p>
-  </div>
-
   <div id="cart-overlay" class="hidden">
     <div class="cart-container">
       <div class="cart-header">
         <h3>ඔබගේ කරට්ටුව</h3>
-        <button id="close-cart"><i class="fas fa-times"></i></button>
+        <button id="close-cart" aria-label="Close cart">
+          <i class="fas fa-times"></i>
+        </button>
       </div>
-      <div class="cart-items" id="cart-items">
-        <!-- Cart items will be loaded here -->
+      <div id="cart-items" class="cart-items">
+        <!-- Cart items will be loaded here dynamically -->
       </div>
       <div class="cart-footer">
         <div class="cart-total">
-          <p>එකතුව: <span id="cart-total-price">රු. 0</span></p>
+          <span>මුළු එකතුව:</span>
+          <span id="cart-total-price">රු. 0</span>
         </div>
-        <button class="btn btn-primary" id="checkout-btn">Check Out</button>
-        <button class="btn btn-secondary" id="clear-cart-btn">කරට්ටුව හිස් කරන්න</button>
+        <div class="cart-actions">
+          <button id="clear-cart-btn" class="btn btn-outline">කරට්ටුව හිස් කරන්න</button>
+          <button id="checkout-btn" class="btn btn-primary">ගෙවීමට යන්න</button>
+        </div>
       </div>
     </div>
+  </div>
+
+  <div id="cart-notification" class="hidden">
+    <p><i class="fas fa-check-circle"></i> <span id="notification-text"></span></p>
   </div>
 
   <button id="go-up-btn" aria-label="Scroll to top">
