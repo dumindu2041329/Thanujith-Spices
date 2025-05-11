@@ -16,6 +16,7 @@ const newsletterSuccess = document.getElementById('newsletter-success');
 const contactForm = document.getElementById('contact-form');
 const contactFormSuccess = document.getElementById('contact-form-success');
 const productSearch = document.getElementById('product-search');
+const themeToggle = document.getElementById('theme-toggle');
 
 // Cart functionality
 let cart = [];
@@ -29,6 +30,12 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Setup event listeners
   setupEventListeners();
+  
+  // Setup go-up button functionality
+  setupGoUpButton();
+  
+  // Initialize theme
+  initTheme();
 });
 
 // Setup event listeners
@@ -71,6 +78,11 @@ function setupEventListeners() {
   // Product search
   if (productSearch) {
     productSearch.addEventListener('input', handleProductSearch);
+  }
+  
+  // Theme toggle
+  if (themeToggle) {
+    themeToggle.addEventListener('click', toggleTheme);
   }
   
   // Close cart when clicking outside
@@ -297,4 +309,93 @@ function checkout() {
   
   // Redirect to checkout page
   window.location.href = 'checkout.html';
+}
+
+// Setup "Go Up" button functionality
+function setupGoUpButton() {
+  const goUpBtn = document.getElementById('go-up-btn');
+  
+  if (!goUpBtn) return;
+  
+  // Show/hide button based on scroll position
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      goUpBtn.classList.add('show');
+    } else {
+      goUpBtn.classList.remove('show');
+    }
+  });
+  
+  // Scroll to top on click with enhanced smooth transition
+  goUpBtn.addEventListener('click', () => {
+    // Get current scroll position
+    const startPosition = window.pageYOffset;
+    const duration = 1000; // Duration in milliseconds (1 second)
+    const startTime = performance.now();
+    
+    // Scroll animation function
+    function scrollAnimation(currentTime) {
+      const elapsedTime = currentTime - startTime;
+      
+      // Easing function (easeOutCubic)
+      const scroll = easeOutCubic(elapsedTime, startPosition, -startPosition, duration);
+      
+      window.scrollTo(0, scroll);
+      
+      // Continue animation if not complete
+      if (elapsedTime < duration) {
+        requestAnimationFrame(scrollAnimation);
+      }
+    }
+    
+    // Easing equation for smooth transition (easeOutCubic)
+    function easeOutCubic(t, b, c, d) {
+      t /= d;
+      t--;
+      return c * (t * t * t + 1) + b;
+    }
+    
+    // Start animation
+    requestAnimationFrame(scrollAnimation);
+  });
+}
+
+// Theme Functions
+function initTheme() {
+  // Check if user previously set a theme preference
+  const savedTheme = localStorage.getItem('theme');
+  
+  if (savedTheme === 'dark') {
+    document.body.classList.add('dark-theme');
+    updateThemeIcon(true);
+  } else {
+    document.body.classList.remove('dark-theme');
+    updateThemeIcon(false);
+  }
+}
+
+function toggleTheme() {
+  const isDarkTheme = document.body.classList.toggle('dark-theme');
+  
+  // Save preference to localStorage
+  localStorage.setItem('theme', isDarkTheme ? 'dark' : 'light');
+  
+  // Update icon
+  updateThemeIcon(isDarkTheme);
+  
+  // Show notification
+  showNotification(isDarkTheme ? 'අඳුරු තේමාව සක්‍රිය කර ඇත' : 'ආලෝකමත් තේමාව සක්‍රිය කර ඇත');
+}
+
+function updateThemeIcon(isDarkTheme) {
+  if (!themeToggle) return;
+  
+  // Update the icon based on current theme
+  if (isDarkTheme) {
+    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+    themeToggle.setAttribute('title', 'Switch to Light Mode');
+  } else {
+    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+    themeToggle.setAttribute('title', 'Switch to Dark Mode');
+  }
 }

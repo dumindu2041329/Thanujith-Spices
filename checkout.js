@@ -8,6 +8,7 @@ const checkoutEmpty = document.getElementById('checkout-empty');
 const checkoutContent = document.getElementById('checkout-content');
 const orderSuccess = document.getElementById('order-success');
 const orderNumber = document.getElementById('order-number');
+const themeToggle = document.getElementById('theme-toggle');
 
 // Constants
 const SHIPPING_COST = 350; // රු. 350
@@ -28,6 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Setup event listeners
   setupCheckoutEventListeners();
+  
+  // Initialize theme
+  initTheme();
 });
 
 // Setup checkout event listeners
@@ -35,6 +39,11 @@ function setupCheckoutEventListeners() {
   // Checkout form submission
   if (checkoutForm) {
     checkoutForm.addEventListener('submit', handleCheckoutSubmit);
+  }
+  
+  // Theme toggle
+  if (themeToggle) {
+    themeToggle.addEventListener('click', toggleTheme);
   }
 }
 
@@ -128,4 +137,49 @@ function handleCheckoutSubmit(e) {
   cart = [];
   saveCart();
   updateCartCount();
+}
+
+// Theme Functions
+function initTheme() {
+  // Check if user previously set a theme preference
+  const savedTheme = localStorage.getItem('theme');
+  
+  if (savedTheme === 'dark') {
+    document.body.classList.add('dark-theme');
+    updateThemeIcon(true);
+  } else {
+    document.body.classList.remove('dark-theme');
+    updateThemeIcon(false);
+  }
+}
+
+function toggleTheme() {
+  const isDarkTheme = document.body.classList.toggle('dark-theme');
+  
+  // Save preference to localStorage
+  localStorage.setItem('theme', isDarkTheme ? 'dark' : 'light');
+  
+  // Update icon
+  updateThemeIcon(isDarkTheme);
+  
+  // Show notification
+  showNotification(isDarkTheme ? 'අඳුරු තේමාව සක්‍රිය කර ඇත' : 'ආලෝකමත් තේමාව සක්‍රිය කර ඇත');
+}
+
+function updateThemeIcon(isDarkTheme) {
+  if (!themeToggle) return;
+  
+  // Update the icon based on current theme
+  if (isDarkTheme) {
+    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+    themeToggle.setAttribute('title', 'Switch to Light Mode');
+  } else {
+    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+    themeToggle.setAttribute('title', 'Switch to Dark Mode');
+  }
+}
+
+// Show notification (simplified version since we don't have the cart notification element)
+function showNotification(message) {
+  console.log(message);
 }

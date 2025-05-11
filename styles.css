@@ -6,6 +6,7 @@
 
 /* ================= CSS VARIABLES ================= */
 :root {
+  /* Light Theme (Default) */
   --spice-dark: #6b3e26;
   --spice-medium: #8b4513;
   --spice-light: #b65c1c;
@@ -34,6 +35,41 @@
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
   --transition: all 0.3s ease;
+  
+  /* Theme Specific (Light Mode) */
+  --body-bg: var(--spice-bg);
+  --card-bg: var(--white);
+  --header-bg: var(--spice-dark);
+  --footer-bg: var(--gray-900);
+  --text-color: var(--text-dark);
+  --footer-text: var(--gray-400);
+  --input-bg: var(--white);
+  --input-border: var(--gray-300);
+}
+
+/* Dark Theme */
+body.dark-theme {
+  --spice-dark: #9b5e46;
+  --spice-medium: #b46533;
+  --spice-light: #d67c3c;
+  --spice-accent: #705045;
+  --body-bg: #1a1a1a;
+  --card-bg: #2a2a2a;
+  --header-bg: #261a12;
+  --footer-bg: #111111;
+  --text-color: #e1e1e1;
+  --footer-text: #bbbbbb;
+  --text-light: #cccccc;
+  --text-muted: #aaaaaa;
+  --gray-100: #2c2c2c;
+  --gray-200: #333333;
+  --gray-300: #444444;
+  --gray-400: #555555;
+  --input-bg: #333333;
+  --input-border: #444444;
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.3);
 }
 
 /* ================= BASE STYLES ================= */
@@ -49,10 +85,11 @@ html {
 
 body {
   font-family: 'Noto Sans Sinhala', 'Open Sans', sans-serif;
-  background-color: var(--spice-bg);
-  color: var(--text-dark);
+  background-color: var(--body-bg);
+  color: var(--text-color);
   line-height: 1.6;
   overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -139,12 +176,13 @@ ul {
 
 /* ================= HEADER ================= */
 header {
-  background-color: var(--spice-dark);
+  background-color: var(--header-bg);
   color: var(--white);
   position: sticky;
   top: 0;
   z-index: 100;
   box-shadow: var(--shadow-sm);
+  transition: background-color 0.3s ease;
 }
 
 .header-content {
@@ -305,6 +343,9 @@ nav ul li a.active::after {
   font-size: 1rem;
   outline: none;
   font-family: 'Noto Sans Sinhala', 'Open Sans', sans-serif;
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
 .search-icon {
@@ -333,11 +374,11 @@ nav ul li a.active::after {
 }
 
 .product-card {
-  background-color: var(--white);
+  background-color: var(--card-bg);
   border-radius: var(--border-radius);
   overflow: hidden;
   box-shadow: var(--shadow-md);
-  transition: var(--transition);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
 .product-card:hover {
@@ -519,6 +560,7 @@ nav ul li a.active::after {
 .process-section {
   padding: 4rem 0;
   background-color: var(--gray-100);
+  transition: background-color 0.3s;
 }
 
 .process-section h2 {
@@ -535,9 +577,10 @@ nav ul li a.active::after {
 .process-step {
   text-align: center;
   padding: 2rem;
-  background-color: var(--white);
+  background-color: var(--card-bg);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-sm);
+  transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 .process-icon {
@@ -570,10 +613,11 @@ nav ul li a.active::after {
 
 .contact-form-container,
 .contact-info-container {
-  background-color: var(--white);
+  background-color: var(--card-bg);
   padding: 2rem;
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-md);
+  transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 .contact-form-container h2,
@@ -595,9 +639,12 @@ nav ul li a.active::after {
 .form-group textarea {
   width: 100%;
   padding: 0.75rem;
-  border: 1px solid var(--gray-300);
+  border: 1px solid var(--input-border);
   border-radius: var(--border-radius);
   font-family: 'Noto Sans Sinhala', 'Open Sans', sans-serif;
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  transition: border-color 0.3s, background-color 0.3s, color 0.3s;
 }
 
 .form-group input:focus,
@@ -701,6 +748,9 @@ nav ul li a.active::after {
   border: none;
   border-radius: var(--border-radius);
   font-family: 'Noto Sans Sinhala', 'Open Sans', sans-serif;
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .success-message {
@@ -716,9 +766,10 @@ nav ul li a.active::after {
 
 /* ================= FOOTER ================= */
 footer {
-  background-color: var(--gray-900);
+  background-color: var(--footer-bg);
   color: var(--white);
   padding: 4rem 0 0;
+  transition: background-color 0.3s ease;
 }
 
 .footer-content {
@@ -735,7 +786,7 @@ footer {
 }
 
 .footer-section p {
-  color: var(--gray-400);
+  color: var(--footer-text);
 }
 
 .footer-section ul li {
@@ -774,6 +825,76 @@ footer {
 .footer-bottom p {
   color: var(--gray-500);
   margin-bottom: 0;
+}
+
+/* ================= THEME TOGGLE ================= */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-left: 1rem;
+}
+
+.theme-toggle-button {
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: color 0.3s;
+}
+
+.theme-toggle-button:hover {
+  color: var(--spice-accent);
+}
+
+/* ================= GO UP BUTTON ================= */
+#go-up-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background-color: var(--spice-dark);
+  color: var(--white);
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s, transform 0.3s, background-color 0.3s;
+  z-index: 99;
+  border: 2px solid transparent;
+}
+
+#go-up-btn:hover {
+  background-color: var(--spice-light);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border: 2px solid var(--white);
+}
+
+#go-up-btn.show {
+  opacity: 1;
+  visibility: visible;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(182, 92, 28, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(182, 92, 28, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(182, 92, 28, 0);
+  }
 }
 
 /* ================= CART NOTIFICATION ================= */
