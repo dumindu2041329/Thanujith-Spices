@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>සම්බන්ධ වන්න - Thanujith Spices</title>
+  <meta name="description" content="අපගේ නිෂ්පාදන ගැන වැඩි විස්තර දැන ගැනීමට හෝ ඇණවුම් කිරීමට අප සම්බන්ධ කර ගන්න. Thanujith Spices හි ඔබට උදව් කරන්නට සූදානම්.">
+  <!-- Open Graph tags -->
+  <meta property="og:title" content="සම්බන්ධ වන්න - Thanujith Spices">
+  <meta property="og:description" content="අපගේ නිෂ්පාදන ගැන වැඩි විස්තර දැන ගැනීමට හෝ ඇණවුම් කිරීමට අප සම්බන්ධ කර ගන්න. Thanujith Spices හි ඔබට උදව් කරන්නට සූදානම්.">
+  <meta property="og:type" content="website">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@400;600;700&family=Open+Sans:wght@400;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <a href="index.html">Thanujith Spices</a>
+        </div>
+        <button id="mobile-menu-button" aria-label="Toggle navigation menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <nav id="nav-menu">
+          <ul>
+            <li><a href="index.html">මුල් පිටුව</a></li>
+            <li><a href="products.html">නිෂ්පාදන</a></li>
+            <li><a href="about.html">අපි ගැන</a></li>
+            <li><a href="contact.html" class="active">සම්බන්ධ වන්න</a></li>
+            <li class="cart-button-container">
+              <button id="cart-button">
+                <i class="fa-solid fa-shopping-cart"></i>
+                <span id="cart-count">0</span>
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <section class="page-banner">
+    <div class="container">
+      <h1>සම්බන්ධ වන්න</h1>
+      <p>අපගේ නිෂ්පාදන ගැන වැඩි විස්තර දැන ගැනීමට හෝ ඇණවුම් කිරීමට අප සම්බන්ධ කර ගන්න.</p>
+    </div>
+  </section>
+
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-content">
+        <div class="contact-form-container">
+          <h2>අප වෙත පණිවුඩයක් යවන්න</h2>
+          <div id="contact-form-success" class="hidden">
+            <div class="success-message">
+              <strong>ස්තූතියි!</strong>
+              <span>ඔබගේ පණිවුඩය සාර්ථකව යවා ඇත. අපි ඉක්මනින් ඔබව සම්බන්ධ කර ගන්නෙමු.</span>
+            </div>
+          </div>
+          <form id="contact-form">
+            <div class="form-group">
+              <label for="name">නම *</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">විද්‍යුත් තැපෑල *</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">දුරකථන අංකය</label>
+              <input type="tel" id="phone" name="phone">
+            </div>
+            <div class="form-group">
+              <label for="message">පණිවුඩය *</label>
+              <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full">යවන්න</button>
+          </form>
+        </div>
+        <div class="contact-info-container">
+          <h2>සම්බන්ධතා තොරතුරු</h2>
+          <div class="contact-info">
+            <div class="contact-info-item">
+              <div class="contact-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div class="contact-detail">
+                <h3>ලිපිනය</h3>
+                <p>123 මහවත්ත පාර,<br>කොළඹ 05,<br>ශ්‍රී ලංකාව</p>
+              </div>
+            </div>
+            <div class="contact-info-item">
+              <div class="contact-icon">
+                <i class="fas fa-phone"></i>
+              </div>
+              <div class="contact-detail">
+                <h3>දුරකථන</h3>
+                <p>+94 11 234 5678</p>
+                <p>+94 77 123 4567</p>
+              </div>
+            </div>
+            <div class="contact-info-item">
+              <div class="contact-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div class="contact-detail">
+                <h3>විද්‍යුත් තැපෑල</h3>
+                <p>info@thanujithspices.lk</p>
+                <p>sales@thanujithspices.lk</p>
+              </div>
+            </div>
+            <div class="contact-info-item">
+              <div class="contact-icon">
+                <i class="fas fa-clock"></i>
+              </div>
+              <div class="contact-detail">
+                <h3>වැඩ කරන වේලාවන්</h3>
+                <p>සඳුදා - සිකුරාදා: පෙ.ව. 9:00 - ප.ව. 5:00</p>
+                <p>සෙනසුරාදා: පෙ.ව. 9:00 - ප.ව. 1:00</p>
+                <p>ඉරිදා: වසා ඇත</p>
+              </div>
+            </div>
+          </div>
+          <div class="social-contact">
+            <h3>සමාජ මාධ්‍ය</h3>
+            <div class="social-icons">
+              <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+              <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section about">
+          <h3>Thanujith Spices</h3>
+          <p>නවීන, පිරිසිදු සහ සත්‍ය ස්වාදය ඔබගේ මුළුතැන්ගෙදරට</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-section links">
+          <h4>ප්‍රධාන මෙනු</h4>
+          <ul>
+            <li><a href="index.html">මුල් පිටුව</a></li>
+            <li><a href="products.html">නිෂ්පාදන</a></li>
+            <li><a href="about.html">අපි ගැන</a></li>
+            <li><a href="contact.html">සම්බන්ධ වන්න</a></li>
+          </ul>
+        </div>
+        <div class="footer-section products-links">
+          <h4>නිෂ්පාදන</h4>
+          <ul>
+            <li><a href="products.html">කුරුඳු</a></li>
+            <li><a href="products.html">ගම්මිරිස්</a></li>
+            <li><a href="products.html">කරාබුනැටි</a></li>
+            <li><a href="products.html">කහ</a></li>
+            <li><a href="products.html">සාදික්කා</a></li>
+          </ul>
+        </div>
+        <div class="footer-section contact">
+          <h4>සම්බන්ධ වන්න</h4>
+          <address>
+            <p>123 මහවත්ත පාර,</p>
+            <p>කොළඹ 05,</p>
+            <p>ශ්‍රී ලංකාව</p>
+            <p>දුරකථන: +94 11 234 5678</p>
+            <p>විද්‍යුත් තැපෑල: info@thanujithspices.lk</p>
+          </address>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Thanujith Spices. සියලු හිමිකම් ඇවිරිණි.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div id="cart-notification" class="hidden">
+    <p><i class="fas fa-check-circle"></i> <span id="notification-text"></span></p>
+  </div>
+
+  <div id="cart-overlay" class="hidden">
+    <div class="cart-container">
+      <div class="cart-header">
+        <h3>ඔබගේ කරට්ටුව</h3>
+        <button id="close-cart"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="cart-items" id="cart-items">
+        <!-- Cart items will be loaded here -->
+      </div>
+      <div class="cart-footer">
+        <div class="cart-total">
+          <p>එකතුව: <span id="cart-total-price">රු. 0</span></p>
+        </div>
+        <button class="btn btn-primary" id="checkout-btn">Check Out</button>
+        <button class="btn btn-secondary" id="clear-cart-btn">කරට්ටුව හිස් කරන්න</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="products.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
