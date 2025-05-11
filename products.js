@@ -320,6 +320,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
   
+  // Using default browser number controls
+  
   // Function to collect all current filter values and apply them
   function applyAllFilters() {
     const searchInput = document.getElementById('product-search');
@@ -341,4 +343,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     renderAllProducts(filters);
   }
+  
+  // Removed custom number controls - using default browser controls
 });

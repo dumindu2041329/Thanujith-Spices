@@ -408,14 +408,27 @@ nav ul li a.active::after {
 .search-container input {
   width: 100%;
   padding: 1rem 1.5rem;
-  border-radius: var(--border-radius);
+  border-radius: 12px;
   border: 2px solid var(--spice-medium);
   font-size: 1rem;
   outline: none;
   font-family: 'Noto Sans Sinhala', 'Open Sans', sans-serif;
   background-color: var(--input-bg);
   color: var(--text-color);
-  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.search-container input:hover {
+  border-color: var(--spice-light);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.search-container input:focus {
+  border-color: var(--spice-medium);
+  box-shadow: 0 0 0 4px rgba(182, 92, 28, 0.25), 0 5px 15px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
 }
 
 .search-icon {
@@ -448,11 +461,18 @@ nav ul li a.active::after {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 2rem;
-  padding: 1rem;
-  border-radius: 8px;
-  background-color: var(--bg-secondary);
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  padding: 1.5rem;
+  border-radius: 16px;
+  background-color: var(--card-bg);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border: 1px solid var(--gray-300);
+}
+
+.dark-theme .filters-section {
+  border-color: var(--gray-700);
 }
 
 .filter-group {
@@ -468,11 +488,39 @@ nav ul li a.active::after {
 
 .filter-group select,
 .filter-group input {
-  padding: 0.5rem;
-  border-radius: 4px;
-  border: 1px solid var(--border-color);
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+  border: 2px solid var(--input-border);
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  font-family: 'Noto Sans Sinhala', 'Open Sans', sans-serif;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.filter-group select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='%23B76E4B'><path d='M10.3 3.3L6 7.6l-4.3-4.3-1.4 1.4 5.7 5.7 5.7-5.7z'/></svg>") no-repeat;
+  background-position: right 2rem center;
+  background-color: var(--input-bg);
+  padding-right: 3.5rem;
+  cursor: pointer;
+}
+
+.filter-group select:hover,
+.filter-group input:hover {
+  border-color: var(--spice-light);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.filter-group select:focus,
+.filter-group input:focus {
+  outline: none;
+  border-color: var(--spice-medium);
+  box-shadow: 0 0 0 3px rgba(182, 92, 28, 0.2), 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .price-filter {
@@ -487,22 +535,59 @@ nav ul li a.active::after {
   gap: 0.5rem;
 }
 
-.price-inputs input {
-  width: 80px;
+.price-inputs {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
+.price-inputs input {
+  width: 75px;
+  text-align: center;
+  padding-right: 1.2rem;
+}
+
+.range-separator {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+/* Number input styling for default browser arrows */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  opacity: 1;
+  margin-left: 5px;
+  height: 20px;
+}
+
+input[type="number"] {
+  appearance: auto;
+}
+
+/* Removed custom number controls as we're using default browser controls */
+
 .filter-btn {
-  padding: 0.5rem 1rem;
-  background-color: var(--spice-accent);
+  padding: 0.85rem 1.2rem;
+  background-color: var(--spice-medium);
   color: var(--white);
   border: none;
-  border-radius: 4px;
+  border-radius: 10px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .filter-btn:hover {
   background-color: var(--spice-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.filter-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .product-card {
@@ -698,17 +783,33 @@ nav ul li a.active::after {
 
 #newsletter-form input {
   flex: 1;
-  padding: 0.75rem 1rem;
-  border: none;
-  border-radius: var(--border-radius) 0 0 var(--border-radius);
+  padding: 1rem 1.2rem;
+  border: 2px solid transparent;
+  border-radius: 12px 0 0 12px;
   font-size: 1rem;
   font-family: 'Noto Sans Sinhala', 'Open Sans', sans-serif;
   background-color: var(--input-bg);
   color: var(--text-color);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+#newsletter-form input:focus {
+  outline: none;
+  border-color: var(--spice-medium);
+  box-shadow: 0 0 0 3px rgba(182, 92, 28, 0.15), 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 #newsletter-form button {
-  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+  border-radius: 0 12px 12px 0;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+#newsletter-form button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 }
 
 .success-message {
@@ -936,46 +1037,86 @@ nav ul li a.active::after {
   color: var(--text-primary);
 }
 
+/* ================= MODERN INPUT STYLING ================= */
 .form-group input,
 .form-group textarea,
-.form-group select {
+.form-group select,
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+input[type="number"],
+input[type="search"],
+textarea,
+select {
   width: 100%;
-  padding: 0.85rem 1.2rem;
+  padding: 0.9rem 1.2rem;
   border: 2px solid var(--input-border);
-  border-radius: 8px;
+  border-radius: 12px;
   font-family: 'Noto Sans Sinhala', 'Open Sans', sans-serif;
   font-size: 1rem;
   background-color: var(--input-bg);
   color: var(--text-color);
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
 }
 
 /* Select specific styling */
-.form-group select {
+.form-group select,
+select {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='%23B76E4B'><path d='M10.3 3.3L6 7.6l-4.3-4.3-1.4 1.4 5.7 5.7 5.7-5.7z'/></svg>") no-repeat;
-  background-position: right 1rem center;
+  background-position: right 2rem center;
   background-color: var(--input-bg);
-  padding-right: 2.5rem;
+  padding-right: 3.5rem;
   cursor: pointer;
 }
 
 .form-group input:hover,
 .form-group textarea:hover,
-.form-group select:hover {
-  border-color: var(--spice-accent);
+.form-group select:hover,
+input[type="text"]:hover,
+input[type="email"]:hover,
+input[type="password"]:hover,
+input[type="tel"]:hover,
+input[type="number"]:hover,
+input[type="search"]:hover,
+textarea:hover,
+select:hover {
+  border-color: var(--spice-light);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .form-group input:focus,
 .form-group textarea:focus,
-.form-group select:focus {
-  border-color: var(--spice-accent);
+.form-group select:focus,
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="tel"]:focus,
+input[type="number"]:focus,
+input[type="search"]:focus,
+textarea:focus,
+select:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(183, 110, 75, 0.2);
-  transform: translateY(-1px);
+  border-color: var(--spice-medium);
+  box-shadow: 0 0 0 4px rgba(182, 92, 28, 0.25), 0 5px 15px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Modern checkbox and radio styling */
+input[type="checkbox"],
+input[type="radio"] {
+  width: auto;
+  margin-right: 0.5rem;
+  accent-color: var(--spice-medium);
+  transform: scale(1.2);
+  cursor: pointer;
 }
 
 .form-row {
