@@ -4,7 +4,7 @@ const products = [
     id: 1,
     name: "කුරුඳු",
     price: 250,
-    image: "https://pixabay.com/get/gf2406bc7c8da4b6d5942fd041b56bdcd376b7ca5d08f974449d944aeacb7cf82edc9270e858b2f21512b27dda320cc3d_1280.jpg",
+    image: "https://images.unsplash.com/photo-1599789551240-7b491c32e3e6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
     description: "අලුත්ම ඉහල ගුණාත්මක කුරුඳු, අත්තිකාරම් වැඩ සදහා සුදුසුයි.",
     isNew: true,
     rating: 4.5,
@@ -14,7 +14,7 @@ const products = [
     id: 2,
     name: "ගම්මිරිස්",
     price: 300,
-    image: "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600",
+    image: "https://images.unsplash.com/photo-1593478595444-6034c2865baa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
     description: "සාම්ප්‍රදායික ක්‍රමයට වගා කරන ලද ගම්මිරිස්, කල් තබා ගැනීමට සුදුසුයි.",
     rating: 5,
     featured: true
@@ -23,7 +23,7 @@ const products = [
     id: 3,
     name: "කරාබුනැටි",
     price: 200,
-    image: "https://pixabay.com/get/g2b132bacff79da7e4d1b5a20247222c4afb9e7fab38a7931af974d13e1845b6f50d419d9ec38518da5464d60b411963a5ce1072506525500a092bc96623c999f_1280.jpg",
+    image: "https://images.unsplash.com/photo-1605202042657-d0141e4f84d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
     description: "තේරූ ගති ඇති කරාබුනැටි, යහපත් සුවඳ හා රස ගුණයෙන් යුතුයි.",
     isDiscount: true,
     rating: 4,
@@ -33,7 +33,7 @@ const products = [
     id: 4,
     name: "කහ",
     price: 180,
-    image: "https://pixabay.com/get/g4c7492cbd1f70e3aaee84444e5d9ac2a8967b6c905c82c9dc5042bb73c26cb6eeb2c3b1da75482d273a73b89e3354207067b89299c8fd337b9db130b3f950d4b_1280.jpg",
+    image: "https://images.unsplash.com/photo-1615484477778-ca3b77940c25?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
     description: "නිරෝගීමත් දිවියකට අවශ්‍ය ඉහල ගුණාත්මක කහ කුඩු.",
     rating: 3.5,
     featured: true
@@ -42,7 +42,7 @@ const products = [
     id: 5,
     name: "සාදික්කා",
     price: 350,
-    image: "https://images.unsplash.com/photo-1618981862233-9af7a7fe6c6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+    image: "https://images.unsplash.com/photo-1588949856340-24a42ee6c673?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
     description: "ඉහල ගුණාත්මක සාදික්කා, සෞඛ්‍ය සම්පන්න ආහාර රසට.",
     rating: 4.5
   },
@@ -50,7 +50,7 @@ const products = [
     id: 6,
     name: "බුලත්",
     price: 150,
-    image: "https://images.unsplash.com/photo-1615485251929-32c2dca40daf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+    image: "https://images.unsplash.com/photo-1590553943643-c7864fec729d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
     description: "සාම්ප්‍රදායික අවශ්‍යතා සඳහා සුදුසු ගුණාත්මක බුලත්.",
     rating: 4
   },
@@ -58,7 +58,7 @@ const products = [
     id: 7,
     name: "එනසාල්",
     price: 280,
-    image: "https://images.unsplash.com/photo-1615485290174-6566f996b349?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+    image: "https://images.unsplash.com/photo-1571532195301-32db5f2eecb5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
     description: "පිරිසිදු එනසාල්, ඕනෑම ආහාරයකට සුදුසුයි.",
     isNew: true,
     rating: 4
@@ -67,7 +67,7 @@ const products = [
     id: 8,
     name: "දුරු",
     price: 220,
-    image: "https://images.unsplash.com/photo-1615485290441-8725a366c61f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+    image: "https://images.unsplash.com/photo-1598543886762-7217aeb84fe1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
     description: "උසස් ගුණාත්මක දුරු, ආහාර සඳහා හොඳම තේරීම.",
     isDiscount: true,
     rating: 3.5

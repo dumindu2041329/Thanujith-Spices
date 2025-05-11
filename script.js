@@ -75,7 +75,8 @@ function setupEventListeners() {
   
   // Close cart when clicking outside
   window.addEventListener('click', (e) => {
-    if (cartOverlay && cartOverlay.contains(e.target) && !cartOverlay.querySelector('.cart-container').contains(e.target)) {
+    if (cartOverlay && cartOverlay.classList.contains('hidden') === false && 
+        !e.target.closest('.cart-container') && !e.target.closest('#cart-button')) {
       closeCart();
     }
   });
@@ -183,7 +184,9 @@ function renderCartItems() {
   
   if (cart.length === 0) {
     cartItems.innerHTML = '<div class="empty-cart">ඔබගේ කරට්ටුව හිස්ය</div>';
-    cartTotalPrice.textContent = 'රු. 0';
+    if (cartTotalPrice) {
+      cartTotalPrice.textContent = 'රු. 0';
+    }
     return;
   }
   
@@ -219,7 +222,9 @@ function renderCartItems() {
   });
   
   cartItems.innerHTML = cartHTML;
-  cartTotalPrice.textContent = `රු. ${total}`;
+  if (cartTotalPrice) {
+    cartTotalPrice.textContent = `රු. ${total}`;
+  }
 }
 
 // Show notification
@@ -290,7 +295,6 @@ function checkout() {
     return;
   }
   
-  alert('ගෙවීම් පද්ධතිය සාර්ථකයි! ඔබගේ ඇණවුම ලැබුණා.');
-  clearCart();
-  closeCart();
+  // Redirect to checkout page
+  window.location.href = 'checkout.html';
 }
