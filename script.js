@@ -17,6 +17,7 @@ const contactForm = document.getElementById('contact-form');
 const contactFormSuccess = document.getElementById('contact-form-success');
 const productSearch = document.getElementById('product-search');
 const themeToggle = document.getElementById('theme-toggle');
+const goUpBtn = document.getElementById('go-up-btn');
 
 // Cart functionality
 let cart = [];
@@ -24,9 +25,16 @@ let cart = [];
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
   loadCart();
-  renderFeaturedProducts(); // From products.js
-  renderAllProducts();      // From products.js
   updateCartCount();
+  
+  // Render products if on home or product page
+  if (document.getElementById('featured-products')) {
+    renderFeaturedProducts(); // From products.js
+  }
+  
+  if (document.getElementById('all-products')) {
+    renderAllProducts(); // From products.js
+  }
   
   // Setup event listeners
   setupEventListeners();
@@ -241,6 +249,8 @@ function renderCartItems() {
 
 // Show notification
 function showNotification(message) {
+  if (!cartNotification || !notificationText) return;
+  
   notificationText.textContent = message;
   cartNotification.classList.remove('hidden');
   
@@ -255,7 +265,13 @@ function handleNewsletterSubmit(e) {
   
   const email = document.getElementById('newsletter-email').value;
   
-  // In a real application, you would send this to a server
+  // Validate email
+  if (!validateEmail(email)) {
+    showNotification('වලංගු විද්‍යුත් තැපෑලක් ඇතුළත් කරන්න!');
+    return;
+  }
+  
+  // In a real app, this would be sent to a server
   console.log('Newsletter subscription:', email);
   
   // Show success message
@@ -279,7 +295,19 @@ function handleContactSubmit(e) {
   const phone = document.getElementById('phone').value;
   const message = document.getElementById('message').value;
   
-  // In a real application, you would send this to a server
+  // Validate required fields
+  if (!name || !email || !message) {
+    showNotification('කරුණාකර අනිවාර්ය ක්ෂේත්‍ර පුරවන්න!');
+    return;
+  }
+  
+  // Validate email
+  if (!validateEmail(email)) {
+    showNotification('වලංගු විද්‍යුත් තැපෑලක් ඇතුළත් කරන්න!');
+    return;
+  }
+  
+  // In a real app, this would be sent to a server
   console.log('Contact form submission:', { name, email, phone, message });
   
   // Show success message
@@ -292,6 +320,12 @@ function handleContactSubmit(e) {
     contactForm.classList.remove('hidden');
     contactFormSuccess.classList.add('hidden');
   }, 5000);
+}
+
+// Validate email format
+function validateEmail(email) {
+  const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
 }
 
 // Handle product search
@@ -313,8 +347,6 @@ function checkout() {
 
 // Setup "Go Up" button functionality
 function setupGoUpButton() {
-  const goUpBtn = document.getElementById('go-up-btn');
-  
   if (!goUpBtn) return;
   
   // Show/hide button based on scroll position
@@ -360,7 +392,7 @@ function setupGoUpButton() {
   });
 }
 
-// Theme Functions
+// Theme Functions - Centralized Implementation
 function initTheme() {
   // Check if user previously set a theme preference
   const savedTheme = localStorage.getItem('theme');
@@ -388,14 +420,17 @@ function toggleTheme() {
 }
 
 function updateThemeIcon(isDarkTheme) {
-  if (!themeToggle) return;
+  // Select all theme toggle buttons across all pages
+  const themeToggles = document.querySelectorAll('.theme-toggle-button');
   
-  // Update the icon based on current theme
-  if (isDarkTheme) {
-    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-    themeToggle.setAttribute('title', 'Switch to Light Mode');
-  } else {
-    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-    themeToggle.setAttribute('title', 'Switch to Dark Mode');
-  }
+  // Update all theme toggle icons
+  themeToggles.forEach(button => {
+    if (isDarkTheme) {
+      button.innerHTML = '<i class="fas fa-sun"></i>';
+      button.setAttribute('title', 'Switch to Light Mode');
+    } else {
+      button.innerHTML = '<i class="fas fa-moon"></i>';
+      button.setAttribute('title', 'Switch to Dark Mode');
+    }
+  });
 }
