@@ -83,6 +83,34 @@ html {
   scroll-behavior: smooth;
 }
 
+/* ================= MODERN SCROLLBAR STYLES ================= */
+/* Webkit browsers (Chrome, Safari, Opera) */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--card-bg);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--spice-light), var(--spice-dark));
+  border-radius: 8px;
+  border: 3px solid var(--card-bg);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, var(--spice-medium), var(--spice-dark));
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--spice-medium) var(--card-bg);
+}
+
 body {
   font-family: 'Noto Sans Sinhala', 'Open Sans', sans-serif;
   background-color: var(--body-bg);
@@ -553,16 +581,15 @@ nav ul li a.active::after {
   color: var(--text-primary);
 }
 
-/* Number input styling for default browser arrows */
+/* Remove number input arrows */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
-  opacity: 1;
-  margin-left: 5px;
-  height: 20px;
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 input[type="number"] {
-  appearance: auto;
+  -moz-appearance: textfield;
 }
 
 /* Removed custom number controls as we're using default browser controls */
@@ -1919,6 +1946,40 @@ address p {
   .btn {
     padding: 0.7rem 1rem;
   }
+}
+
+/* ================= SCROLLBAR STYLING ================= */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--spice-bg);
+  border-radius: 100vh;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--spice-medium);
+  border-radius: 100vh;
+  border: 3px solid var(--spice-bg);
+  transition: background-color 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--spice-dark);
+  border: 2px solid var(--spice-bg);
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--spice-medium) var(--spice-bg);
+  scroll-behavior: smooth;
 }
 
 /* ================= PRINT STYLES ================= */
